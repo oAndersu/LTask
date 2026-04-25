@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Passatempo</title>
+	<link rel="stylesheet" href="seila.css">
+	
+</head>
+<body>
+		<input type="text" id="input">
+		<button id="botao"> Confirmar</button>
+		<ol id="lista">
+			
+		</ol>		
+
+
+	<script>
+		//Variaveis iniciais
+	const input =  document.getElementById('input')
+	const lista = document.getElementById('lista')
+	const botao = document.getElementById('botao')
+	
+	// Botão e seu funcionamento 
+	botao.addEventListener("click", function(){
+	   const texto = input.value 
+	   const item = document.createElement('li')
+	   const x = document.createElement('button')
+       
+   //Condições
+	if(texto !="") {
+		//monta a tarefa
+       x.textContent = 'x'
+       item.textContent = texto
+       item.appendChild(x)
+	   lista.appendChild(item)
+	   input.value = ""
+
+		//Botão para excluir
+	   x.addEventListener("click", function(){
+		   event.stopPropagation()
+		   item.remove()
+
+
+	})
+		// Botão de conclusão
+		item.addEventListener("click", function (){
+			if (item.style.textDecoration !="line-through" ) {
+				 item.style.textDecoration = "line-through"
+
+			}
+			else{
+				 item.style.textDecoration = ""
+			}
+		})
+
+	}
+	})
+	</script>
+</body>
+</html> 
