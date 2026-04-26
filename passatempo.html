@@ -16,11 +16,49 @@
 
 
 	<script>
-		//Variaveis iniciais
+	//Variaveis iniciais
+	let tarefas = []
 	const input =  document.getElementById('input')
 	const lista = document.getElementById('lista')
 	const botao = document.getElementById('botao')
-	
+
+	//Salvamento
+	const tarefasalva = JSON.parse(localStorage.getItem("tarefas"))
+	if (tarefasalva) {
+		tarefas = tarefasalva
+		tarefasalva.forEach(function (texto) {
+		const sli =	document.createElement('li')
+		const sx =	document.createElement('button')
+
+            sli.textContent = texto
+			sx.textContent = 'x'
+			sli.appendChild(sx)
+			lista.appendChild(sli)
+
+		sx.addEventListener("click", function (){
+			event.stopPropagation()
+			sli.remove()
+
+			tarefas = tarefas.filter(function(t) {
+				return t != texto
+
+
+
+			})
+			localStorage.setItem("tarefas", JSON.stringify(tarefas))
+		})
+		sli.addEventListener("click", function (){
+			if (sli.style.textDecoration != "line-through") {
+				sli.style.textDecoration = "line-through"
+			}
+			else{
+				sli.style.textDecoration = ""
+			}
+		})
+		})
+
+	}
+
 	// Botão e seu funcionamento 
 	botao.addEventListener("click", function(){
 	   const texto = input.value 
@@ -29,19 +67,23 @@
        
    //Condições
 	if(texto !="") {
+
 		//monta a tarefa
        x.textContent = 'x'
        item.textContent = texto
        item.appendChild(x)
 	   lista.appendChild(item)
-	   input.value = " "
+	   input.value = ""
+       tarefas.push(texto)
 
 		//Botão para excluir
 	   x.addEventListener("click", function(){
 		   event.stopPropagation()
 		   item.remove()
-
-
+		   tarefas = tarefas.filter(function(t) {
+			   return t != texto
+		   })
+		   localStorage.setItem("tarefas", JSON.stringify(tarefas))
 	})
 		// Botão de conclusão
 		item.addEventListener("click", function (){
@@ -54,6 +96,8 @@
 			}
 		})
 
+		// Storage
+		localStorage.setItem("tarefas", JSON.stringify(tarefas))
 	}
 	})
 	</script>
