@@ -42,6 +42,7 @@ body{
 }
 #lista li{
     padding: 2px 0px;
+    animation: fadeIn 0.3s ease;
 }
 #lista li:hover{
     color: white;
@@ -49,14 +50,30 @@ body{
 /* Botao delete */
 #lista li button {
 
-margin-left: 16px;
-border: transparent;
-   background: transparent;
-   color: #555;
+    margin-left: 16px;
+    border: transparent;
+    background: transparent;
+    color: #555;
     border-radius: 4px;
     cursor: pointer;
 }
 #lista li button:hover {
     background: transparent;
     color: white;
+}
+@keyframes fadeIn {
+    from{
+        opacity:0;
+        transform: translateY(-6px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@media  (max-width: 480px) {
+    #input{
+        outline: none;
+        width: 90%;
+    }
 }
