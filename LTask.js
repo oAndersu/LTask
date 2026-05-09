@@ -3,6 +3,7 @@ let tarefas = []
 const input =  document.getElementById('input')
 const lista = document.getElementById('lista')
 const botao = document.getElementById('botao')
+//Função prinicipal
 function criarTarefa(texto){
     const item = document.createElement('li')
     const x = document.createElement('button')
